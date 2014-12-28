@@ -1,0 +1,9 @@
+node_modules/
+bower_components/
+dist/
+rev/
+public/*
+!public/images/
+\#*#
+*~
+.DS_Store

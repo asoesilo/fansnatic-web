@@ -1,0 +1,12 @@
+module.exports =
+  coffee: 'src/coffee/**/*.coffee'
+  jade: 'src/**/*.jade'
+  stylus: 'src/styles/**/*.styl'
+  stylusMain: 'src/styles/main.styl'
+  publicDir: './public'
+  publicDirJS: './public/js/'
+  publicDirCSS: './public/css/'
+  images: './public/images/**/*'
+  distDir: './dist'
+  revDir: './rev'
+  deploy: './dist/**/*'

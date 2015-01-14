@@ -10,3 +10,4 @@ module.exports =
   distDir: './dist'
   revDir: './rev'
   deploy: './dist/**/*'
+  karma: __dirname + '/../karma.config.coffee'

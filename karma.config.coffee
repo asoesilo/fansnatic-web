@@ -16,6 +16,7 @@ module.exports = (config) ->
     # list of files / patterns to load in the browser
     files: [
       'public/bower_components/angular/angular.js'
+      'public/bower_components/angular-mocks/angular-mocks.js'
       'public/bower_components/angular-ui-router/release/angular-ui-router.js'
       'src/coffee/**/*.coffee'
       'tests/**/*.coffee'

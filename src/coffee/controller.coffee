@@ -1,4 +1,4 @@
-angular.module 'app'
+angular.module 'mitt.app'
   .controller 'mainController', ->
     tech: [
       'gulp'

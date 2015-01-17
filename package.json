@@ -32,5 +32,8 @@
     "mocha": "^2.1.0",
     "require-dir": "^0.1.0",
     "wiredep": "^1.8.5"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/karma start ./karma.config.coffee --single-run --browsers PhantomJS"
   }
 }

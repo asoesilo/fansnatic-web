@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/asoesilo/fansnatic-web.png)](http://travis-ci.org/asoesilo/fansnatic-web)
+
 ## fansnatic-web
 
 ## Stack

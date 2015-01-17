@@ -25,11 +25,11 @@
     "gulp-webserver": "^0.7.2",
     "karma": "^0.12.31",
     "karma-chai": "^0.1.0",
+    "karma-cli": "0.0.4",
     "karma-coffee-preprocessor": "^0.2.1",
     "karma-mocha": "^0.1.10",
     "karma-phantomjs-launcher": "^0.1.4",
     "main-bower-files": "^2.0.0",
-    "mocha": "^2.1.0",
     "require-dir": "^0.1.0",
     "wiredep": "^1.8.5"
   },

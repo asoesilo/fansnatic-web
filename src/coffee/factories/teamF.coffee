@@ -5,9 +5,12 @@ TeamF = ($q, $timeout, $http, ApiPath) ->
   _teams = undefined
   _selectedTeam = undefined
 
-  # Return the list of teams
+  # Returns a promise that resolve with the list of teams
   TeamF.getTeams = ->
-    _teams
+    _teams ||=
+      $http.get "#{ApiPath}/teams"
+      .then (res) ->
+        return res.data
 
   # Return team selected by user
   TeamF.getSelectedTeam = ->
@@ -16,25 +19,6 @@ TeamF = ($q, $timeout, $http, ApiPath) ->
   # Set the user selected team
   TeamF.selectTeam = (team) ->
     _selectedTeam = team
-
-  # Initialize the list of teams
-  TeamF.initialize = ->
-    deferred = $q.defer()
-
-    unless _teams
-      $http.get "#{ApiPath}/teams"
-      .success (teams) ->
-        _teams = teams
-        deferred.resolve()
-      .error (error) ->
-        # TODO: Log error
-        console.error error
-    else
-      $timeout ->
-        deferred.resolve()
-      , 200
-
-    return deferred.promise
 
   TeamF
 

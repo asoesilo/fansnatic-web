@@ -5,30 +5,50 @@ describe 'Team Factory |', ->
     @TeamF = $injector.get 'TeamF'
     @HttpBackend = $injector.get '$httpBackend'
     @ApiPath = $injector.get 'ApiPath'
+    @RootScope = $injector.get '$rootScope'
 
   afterEach ->
     @HttpBackend.verifyNoOutstandingExpectation()
     @HttpBackend.verifyNoOutstandingRequest()
 
-  describe 'initialize() | ', ->
-    it 'getTeams() return undefined before initialize() is called', ->
-      expect(@TeamF.getTeams()).to.be.undefined
+  describe 'getTeams() | ', ->
+    RESPONSE = [
+      id: 1
+      name: 'Dallas Mavericks'
+    ,
+      id: 2
+      name: 'New York Knicks'
+    ]
 
-    it 'initialize() retrieve the list of teams from the server', ->
-      response = [
-        id: 1
-        name: 'Dallas Mavericks'
-      ,
-        id: 2
-        name: 'New York Knicks'
-      ]
+    it 'getTeams() retrieve the list of teams from the server', ->
       @HttpBackend.expect 'GET', "#{@ApiPath}/teams"
-        .respond 200, response
+        .respond 200, RESPONSE
 
-      @TeamF.initialize()
-        .then ->
-          expect(@TeamF.getTeams()).to.deep.equal response
+      @TeamF.getTeams()
+        .then (teams) ->
+          expect(teams).to.deep.equal RESPONSE
+
       @HttpBackend.flush()
+
+    it 'getTeams() does not send a request to the server after calling it the first time', ->
+      @HttpBackend.expect 'GET', "#{@ApiPath}/teams"
+        .respond 200, RESPONSE
+
+      # Calling getTeams() the first time
+      @TeamF.getTeams()
+      @HttpBackend.flush()
+
+      # Reset the http backend expectations so that it throws an error if
+      # a HTTP call is sent out
+      @HttpBackend.resetExpectations()
+
+      # Calls getTeams() the second time
+      @TeamF.getTeams()
+        .then (teams) ->
+          expect(teams).to.deep.equal RESPONSE
+
+      # Force $promise to return
+      @RootScope.$apply()
 
   describe 'selectTeam() |', ->
     it 'getSelectedTeam() returns undefined before a team has been selected', ->

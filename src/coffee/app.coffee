@@ -1,4 +1,4 @@
-angular.module 'app', ['ui.router']
+angular.module 'mitt.app', ['ui.router']
   .config ($stateProvider, $urlRouterProvider) ->
     $urlRouterProvider.otherwise '/'
 
